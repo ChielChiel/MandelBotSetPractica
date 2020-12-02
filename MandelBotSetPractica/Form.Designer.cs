@@ -32,9 +32,9 @@
             this.MandelBrotImg = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.SpecificPlace = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.Submit = new System.Windows.Forms.Button();
+            this.MaxText = new System.Windows.Forms.TextBox();
             this.ScaleText = new System.Windows.Forms.TextBox();
             this.MidYText = new System.Windows.Forms.TextBox();
             this.MidXText = new System.Windows.Forms.TextBox();
@@ -42,14 +42,13 @@
             this.Schaal = new System.Windows.Forms.Label();
             this.MidY = new System.Windows.Forms.Label();
             this.MidX = new System.Windows.Forms.Label();
-            this.MaxText = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.MandelBrotImg)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MandelBrotImg
             // 
-            this.MandelBrotImg.Location = new System.Drawing.Point(33, 227);
+            this.MandelBrotImg.Location = new System.Drawing.Point(30, 200);
             this.MandelBrotImg.Margin = new System.Windows.Forms.Padding(2);
             this.MandelBrotImg.Name = "MandelBrotImg";
             this.MandelBrotImg.Size = new System.Drawing.Size(519, 260);
@@ -64,7 +63,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.SpecificPlace);
             this.panel1.Controls.Add(this.listBox1);
             this.panel1.Controls.Add(this.Submit);
             this.panel1.Controls.Add(this.MaxText);
@@ -78,42 +76,40 @@
             this.panel1.Location = new System.Drawing.Point(33, 32);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(519, 162);
+            this.panel1.Size = new System.Drawing.Size(519, 117);
             this.panel1.TabIndex = 3;
-            // 
-            // SpecificPlace
-            // 
-            this.SpecificPlace.AutoSize = true;
-            this.SpecificPlace.Location = new System.Drawing.Point(13, 101);
-            this.SpecificPlace.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.SpecificPlace.Name = "SpecificPlace";
-            this.SpecificPlace.Size = new System.Drawing.Size(85, 13);
-            this.SpecificPlace.TabIndex = 10;
-            this.SpecificPlace.Text = "Bijzonder Plaatje";
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(16, 116);
+            this.listBox1.Location = new System.Drawing.Point(436, 28);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(164, 30);
+            this.listBox1.Size = new System.Drawing.Size(64, 17);
             this.listBox1.TabIndex = 9;
             // 
             // Submit
             // 
-            this.Submit.Location = new System.Drawing.Point(436, 116);
+            this.Submit.Location = new System.Drawing.Point(436, 56);
             this.Submit.Margin = new System.Windows.Forms.Padding(2);
             this.Submit.Name = "Submit";
-            this.Submit.Size = new System.Drawing.Size(59, 39);
+            this.Submit.Size = new System.Drawing.Size(64, 24);
             this.Submit.TabIndex = 8;
             this.Submit.Text = "Show Me!";
             this.Submit.UseVisualStyleBackColor = true;
             this.Submit.Click += new System.EventHandler(this.Submit_Click);
             // 
+            // MaxText
+            // 
+            this.MaxText.Location = new System.Drawing.Point(317, 60);
+            this.MaxText.Margin = new System.Windows.Forms.Padding(2);
+            this.MaxText.Name = "MaxText";
+            this.MaxText.Size = new System.Drawing.Size(90, 20);
+            this.MaxText.TabIndex = 7;
+            // 
             // ScaleText
             // 
-            this.ScaleText.Location = new System.Drawing.Point(128, 28);
+            this.ScaleText.Location = new System.Drawing.Point(317, 28);
             this.ScaleText.Margin = new System.Windows.Forms.Padding(2);
             this.ScaleText.Name = "ScaleText";
             this.ScaleText.Size = new System.Drawing.Size(90, 20);
@@ -121,24 +117,24 @@
             // 
             // MidYText
             // 
-            this.MidYText.Location = new System.Drawing.Point(16, 75);
+            this.MidYText.Location = new System.Drawing.Point(69, 56);
             this.MidYText.Margin = new System.Windows.Forms.Padding(2);
             this.MidYText.Name = "MidYText";
-            this.MidYText.Size = new System.Drawing.Size(90, 20);
+            this.MidYText.Size = new System.Drawing.Size(200, 20);
             this.MidYText.TabIndex = 5;
             // 
             // MidXText
             // 
-            this.MidXText.Location = new System.Drawing.Point(16, 28);
+            this.MidXText.Location = new System.Drawing.Point(69, 28);
             this.MidXText.Margin = new System.Windows.Forms.Padding(2);
             this.MidXText.Name = "MidXText";
-            this.MidXText.Size = new System.Drawing.Size(90, 20);
+            this.MidXText.Size = new System.Drawing.Size(200, 20);
             this.MidXText.TabIndex = 4;
             // 
             // MaxIterations
             // 
             this.MaxIterations.AutoSize = true;
-            this.MaxIterations.Location = new System.Drawing.Point(125, 60);
+            this.MaxIterations.Location = new System.Drawing.Point(273, 63);
             this.MaxIterations.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MaxIterations.Name = "MaxIterations";
             this.MaxIterations.Size = new System.Drawing.Size(27, 13);
@@ -148,7 +144,7 @@
             // Schaal
             // 
             this.Schaal.AutoSize = true;
-            this.Schaal.Location = new System.Drawing.Point(125, 13);
+            this.Schaal.Location = new System.Drawing.Point(273, 31);
             this.Schaal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Schaal.Name = "Schaal";
             this.Schaal.Size = new System.Drawing.Size(40, 13);
@@ -168,20 +164,12 @@
             // MidX
             // 
             this.MidX.AutoSize = true;
-            this.MidX.Location = new System.Drawing.Point(13, 13);
+            this.MidX.Location = new System.Drawing.Point(13, 31);
             this.MidX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MidX.Name = "MidX";
             this.MidX.Size = new System.Drawing.Size(52, 13);
             this.MidX.TabIndex = 0;
             this.MidX.Text = "Midden X";
-            // 
-            // MaxText
-            // 
-            this.MaxText.Location = new System.Drawing.Point(128, 75);
-            this.MaxText.Margin = new System.Windows.Forms.Padding(2);
-            this.MaxText.Name = "MaxText";
-            this.MaxText.Size = new System.Drawing.Size(90, 20);
-            this.MaxText.TabIndex = 7;
             // 
             // Form
             // 
@@ -193,7 +181,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Form1Load);
             ((System.ComponentModel.ISupportInitialize)(this.MandelBrotImg)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -214,7 +202,6 @@
         private System.Windows.Forms.TextBox ScaleText;
         private System.Windows.Forms.TextBox MidYText;
         private System.Windows.Forms.TextBox MidXText;
-        private System.Windows.Forms.Label SpecificPlace;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox MaxText;
     }
