@@ -1,6 +1,6 @@
 ﻿namespace MandelBotSetPractica
 {
-    partial class Form1
+    partial class Form
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,6 @@
             this.SpecificPlace = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.Submit = new System.Windows.Forms.Button();
-            this.MaxText = new System.Windows.Forms.TextBox();
             this.ScaleText = new System.Windows.Forms.TextBox();
             this.MidYText = new System.Windows.Forms.TextBox();
             this.MidXText = new System.Windows.Forms.TextBox();
@@ -43,15 +42,17 @@
             this.Schaal = new System.Windows.Forms.Label();
             this.MidY = new System.Windows.Forms.Label();
             this.MidX = new System.Windows.Forms.Label();
+            this.MaxText = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.MandelBrotImg)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MandelBrotImg
             // 
-            this.MandelBrotImg.Location = new System.Drawing.Point(50, 350);
+            this.MandelBrotImg.Location = new System.Drawing.Point(33, 227);
+            this.MandelBrotImg.Margin = new System.Windows.Forms.Padding(2);
             this.MandelBrotImg.Name = "MandelBrotImg";
-            this.MandelBrotImg.Size = new System.Drawing.Size(400, 400);
+            this.MandelBrotImg.Size = new System.Drawing.Size(519, 260);
             this.MandelBrotImg.TabIndex = 0;
             this.MandelBrotImg.TabStop = false;
             // 
@@ -74,111 +75,123 @@
             this.panel1.Controls.Add(this.Schaal);
             this.panel1.Controls.Add(this.MidY);
             this.panel1.Controls.Add(this.MidX);
-            this.panel1.Location = new System.Drawing.Point(50, 50);
+            this.panel1.Location = new System.Drawing.Point(33, 32);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 250);
+            this.panel1.Size = new System.Drawing.Size(519, 162);
             this.panel1.TabIndex = 3;
             // 
             // SpecificPlace
             // 
             this.SpecificPlace.AutoSize = true;
-            this.SpecificPlace.Location = new System.Drawing.Point(20, 155);
+            this.SpecificPlace.Location = new System.Drawing.Point(13, 101);
+            this.SpecificPlace.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SpecificPlace.Name = "SpecificPlace";
-            this.SpecificPlace.Size = new System.Drawing.Size(127, 20);
+            this.SpecificPlace.Size = new System.Drawing.Size(85, 13);
             this.SpecificPlace.TabIndex = 10;
             this.SpecificPlace.Text = "Bijzonder Plaatje";
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(24, 178);
+            this.listBox1.Location = new System.Drawing.Point(16, 116);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(244, 44);
+            this.listBox1.Size = new System.Drawing.Size(164, 30);
             this.listBox1.TabIndex = 9;
             // 
             // Submit
             // 
-            this.Submit.Location = new System.Drawing.Point(299, 178);
+            this.Submit.Location = new System.Drawing.Point(436, 116);
+            this.Submit.Margin = new System.Windows.Forms.Padding(2);
             this.Submit.Name = "Submit";
-            this.Submit.Size = new System.Drawing.Size(88, 60);
+            this.Submit.Size = new System.Drawing.Size(59, 39);
             this.Submit.TabIndex = 8;
             this.Submit.Text = "Show Me!";
             this.Submit.UseVisualStyleBackColor = true;
             this.Submit.Click += new System.EventHandler(this.Submit_Click);
             // 
-            // MaxText
-            // 
-            this.MaxText.Location = new System.Drawing.Point(192, 115);
-            this.MaxText.Name = "MaxText";
-            this.MaxText.Size = new System.Drawing.Size(133, 26);
-            this.MaxText.TabIndex = 7;
-            // 
             // ScaleText
             // 
-            this.ScaleText.Location = new System.Drawing.Point(192, 43);
+            this.ScaleText.Location = new System.Drawing.Point(128, 28);
+            this.ScaleText.Margin = new System.Windows.Forms.Padding(2);
             this.ScaleText.Name = "ScaleText";
-            this.ScaleText.Size = new System.Drawing.Size(133, 26);
+            this.ScaleText.Size = new System.Drawing.Size(90, 20);
             this.ScaleText.TabIndex = 6;
             // 
             // MidYText
             // 
-            this.MidYText.Location = new System.Drawing.Point(24, 115);
+            this.MidYText.Location = new System.Drawing.Point(16, 75);
+            this.MidYText.Margin = new System.Windows.Forms.Padding(2);
             this.MidYText.Name = "MidYText";
-            this.MidYText.Size = new System.Drawing.Size(133, 26);
+            this.MidYText.Size = new System.Drawing.Size(90, 20);
             this.MidYText.TabIndex = 5;
             // 
             // MidXText
             // 
-            this.MidXText.Location = new System.Drawing.Point(24, 43);
+            this.MidXText.Location = new System.Drawing.Point(16, 28);
+            this.MidXText.Margin = new System.Windows.Forms.Padding(2);
             this.MidXText.Name = "MidXText";
-            this.MidXText.Size = new System.Drawing.Size(133, 26);
+            this.MidXText.Size = new System.Drawing.Size(90, 20);
             this.MidXText.TabIndex = 4;
             // 
             // MaxIterations
             // 
             this.MaxIterations.AutoSize = true;
-            this.MaxIterations.Location = new System.Drawing.Point(188, 92);
+            this.MaxIterations.Location = new System.Drawing.Point(125, 60);
+            this.MaxIterations.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MaxIterations.Name = "MaxIterations";
-            this.MaxIterations.Size = new System.Drawing.Size(38, 20);
+            this.MaxIterations.Size = new System.Drawing.Size(27, 13);
             this.MaxIterations.TabIndex = 3;
             this.MaxIterations.Text = "Max";
             // 
             // Schaal
             // 
             this.Schaal.AutoSize = true;
-            this.Schaal.Location = new System.Drawing.Point(188, 20);
+            this.Schaal.Location = new System.Drawing.Point(125, 13);
+            this.Schaal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Schaal.Name = "Schaal";
-            this.Schaal.Size = new System.Drawing.Size(58, 20);
+            this.Schaal.Size = new System.Drawing.Size(40, 13);
             this.Schaal.TabIndex = 2;
             this.Schaal.Text = "Schaal";
             // 
             // MidY
             // 
             this.MidY.AutoSize = true;
-            this.MidY.Location = new System.Drawing.Point(20, 92);
+            this.MidY.Location = new System.Drawing.Point(13, 60);
+            this.MidY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MidY.Name = "MidY";
-            this.MidY.Size = new System.Drawing.Size(76, 20);
+            this.MidY.Size = new System.Drawing.Size(52, 13);
             this.MidY.TabIndex = 1;
             this.MidY.Text = "Midden Y";
             // 
             // MidX
             // 
             this.MidX.AutoSize = true;
-            this.MidX.Location = new System.Drawing.Point(20, 20);
+            this.MidX.Location = new System.Drawing.Point(13, 13);
+            this.MidX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MidX.Name = "MidX";
-            this.MidX.Size = new System.Drawing.Size(76, 20);
+            this.MidX.Size = new System.Drawing.Size(52, 13);
             this.MidX.TabIndex = 0;
             this.MidX.Text = "Midden X";
             // 
-            // Form1
+            // MaxText
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.MaxText.Location = new System.Drawing.Point(128, 75);
+            this.MaxText.Margin = new System.Windows.Forms.Padding(2);
+            this.MaxText.Name = "MaxText";
+            this.MaxText.Size = new System.Drawing.Size(90, 20);
+            this.MaxText.TabIndex = 7;
+            // 
+            // Form
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 794);
+            this.ClientSize = new System.Drawing.Size(588, 516);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.MandelBrotImg);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "Form";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MandelBrotImg)).EndInit();
@@ -198,12 +211,12 @@
         private System.Windows.Forms.Label Schaal;
         private System.Windows.Forms.Label MidY;
         private System.Windows.Forms.Button Submit;
-        private System.Windows.Forms.TextBox MaxText;
         private System.Windows.Forms.TextBox ScaleText;
         private System.Windows.Forms.TextBox MidYText;
         private System.Windows.Forms.TextBox MidXText;
         private System.Windows.Forms.Label SpecificPlace;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TextBox MaxText;
     }
 }
 
