@@ -32,7 +32,7 @@
             this.MandelBrotImg = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.ColorBox = new System.Windows.Forms.ListBox();
             this.Submit = new System.Windows.Forms.Button();
             this.MaxText = new System.Windows.Forms.TextBox();
             this.ScaleText = new System.Windows.Forms.TextBox();
@@ -63,7 +63,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.listBox1);
+            this.panel1.Controls.Add(this.ColorBox);
             this.panel1.Controls.Add(this.Submit);
             this.panel1.Controls.Add(this.MaxText);
             this.panel1.Controls.Add(this.ScaleText);
@@ -79,14 +79,19 @@
             this.panel1.Size = new System.Drawing.Size(519, 117);
             this.panel1.TabIndex = 3;
             // 
-            // listBox1
+            // ColorBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(436, 28);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(64, 17);
-            this.listBox1.TabIndex = 9;
+            this.ColorBox.FormattingEnabled = true;
+            this.ColorBox.Items.AddRange(new object[] {
+            "default",
+            "fancy",
+            "yellow",
+            "zembla"});
+            this.ColorBox.Location = new System.Drawing.Point(436, 28);
+            this.ColorBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ColorBox.Name = "ColorBox";
+            this.ColorBox.Size = new System.Drawing.Size(64, 17);
+            this.ColorBox.TabIndex = 9;
             // 
             // Submit
             // 
@@ -202,7 +207,7 @@
         private System.Windows.Forms.TextBox ScaleText;
         private System.Windows.Forms.TextBox MidYText;
         private System.Windows.Forms.TextBox MidXText;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox ColorBox;
         private System.Windows.Forms.TextBox MaxText;
     }
 }
