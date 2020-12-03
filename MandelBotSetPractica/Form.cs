@@ -44,9 +44,9 @@ namespace MandelBotSetPractica
             MandelBrotImg.Paint += this.DrawMandelBrot;
             MandelBrotImg.MouseClick += new MouseEventHandler(this.zoom);
             ColorBox.Items.Add("default");
-            ColorBox.Items.Add("yellow");
+            ColorBox.Items.Add("Abstract");
             ColorBox.Items.Add("fancy");
-            ColorBox.Items.Add("zembla");
+            ColorBox.Items.Add("Kwadrant");
             ColorBox.SelectionMode = SelectionMode.One;
             ColorBox.SelectedIndexChanged += this.ColorBoxSelectedIndexChanged;
 
@@ -59,32 +59,35 @@ namespace MandelBotSetPractica
             switch (selectedItem)
             {
                 case "default":
-                    this.ScaleFactor = 2;
+                    this.ScaleFactor = 0.01;
                     this.MidPointX = 0;
                     this.MidPointY = 0;
                     this.MaxLoop = 100;
                     break;
-                case "yellow":
-                    this.ScaleFactor = 2;
-                    this.MidPointX = 0;
-                    this.MidPointY = 0;
+                case "Abstract":
+                    this.ScaleFactor = 2.38418579101563E-09;
+                    this.MidPointX = 0.255861828327179;
+                    this.MidPointY = -0.000639102458953858;
                     this.MaxLoop = 100;
                     break;
                 case "fancy":
-                    this.ScaleFactor = 3;
-                    this.MidPointX = 0;
-                    this.MidPointY = 0;
+                    this.ScaleFactor = 2.38418579101563E-09;
+                    this.MidPointX = 0.255861828327179;
+                    this.MidPointY = -0.000639102458953858;
                     this.MaxLoop = 100;
                     break;
-                case "zembla":
-                    this.ScaleFactor = 4;
-                    this.MidPointX = 0;
-                    this.MidPointY = 0;
+                case "Kwadrant":
+                    this.ScaleFactor = 6.103515625E-07;
+                    this.MidPointX = -1.77066650390625;
+                    this.MidPointY = -0.0163330078125;
                     this.MaxLoop = 100;
                     break;
             }
             this.ColorMode = selectedItem;
-
+            ScaleText.Text = this.ScaleFactor.ToString();
+            MidXText.Text = this.MidPointX.ToString();
+            MidYText.Text = this.MidPointY.ToString();
+            MaxText.Text = this.MaxLoop.ToString();
             MandelBrotImg.Refresh();
         }
         void zoom(object sender, MouseEventArgs e)
@@ -128,7 +131,7 @@ namespace MandelBotSetPractica
                             }
                             MandelColor = Color.FromArgb(RGB, RGB, RGB);
                             break;
-                        case "yellow":
+                        case "Abstract":
                             double map = this.Map(mandelGetal, 0, MaxLoop, 0.4, 1);
                             MandelColor = HSL2RGB(map, 0.5, 0.5);
                             if (mandelGetal == MaxLoop)
@@ -145,7 +148,7 @@ namespace MandelBotSetPractica
                             }
                             MandelColor = Color.FromArgb(Brigth, Brigth, Brigth);
                             break;
-                        case "zembla":
+                        case "Kwadrant":
                             double map1 = this.Map(mandelGetal, 0, MaxLoop, 0.7, 1);
                             MandelColor = HSL2RGB(map1, 0.5, 0.5);
                             if (mandelGetal == MaxLoop)
