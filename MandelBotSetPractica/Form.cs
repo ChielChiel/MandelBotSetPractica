@@ -20,6 +20,7 @@ namespace MandelBotSetPractica
             InitializeComponent();
         }
 
+        //Als t formulier wordt geladen dan wordt deze functie gedraait. Initieert meeste variabelen.
         private void Form1Load(object sender, EventArgs e)
         {
             //Here we set the standard values into the text boxes
@@ -41,6 +42,8 @@ namespace MandelBotSetPractica
             ColorBox.SelectedIndexChanged += this.ColorBoxSelectedIndexChanged;
 
         }
+        
+        //Als user een keuze maakt in de list dan wordt deze functie gedraait
         private void ColorBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedItem = ColorBox.GetItemText(ColorBox.SelectedItem);
@@ -80,6 +83,8 @@ namespace MandelBotSetPractica
             MaxText.Text = this.MaxLoop.ToString();
             MandelBrotImg.Refresh();
         }
+        
+        //Als je klikt wordt deze functie gedraait. Het middelpunt wordt aangepast en de schaalfactor gehalveerd
         void zoom(object sender, MouseEventArgs e)
         {
             ScaleText.Text = this.ScaleFactor.ToString();
@@ -91,6 +96,8 @@ namespace MandelBotSetPractica
             MandelBrotImg.Refresh();
 
         }
+        
+        //De hoofd teken functie. Deze tekent de mandelbrot.
         void DrawMandelBrot(object sender, PaintEventArgs e)
         {
             Bitmap MandelBrot = new Bitmap(this.MandelBrotSize.Width, this.MandelBrotSize.Height);
@@ -99,17 +106,19 @@ namespace MandelBotSetPractica
             double Y;
             int mandelGetal;
 
+            //Loopt hier door de x,y pixels.
             for (int pixelX = 0; pixelX < MandelBrot.Width; pixelX++)
             {
                 for (int pixelY = 0; pixelY < MandelBrot.Height; pixelY++)
                 {
-                    //Here we transform the pixel coordinates into X and Y's ranging from -2.5 to 2.5
+                    //Here we transform the pixel coordinates into X and Y's ranging from numbers like -2.5 to 2.5
                     X = (pixelX - (MandelBrot.Width / 2)) * this.ScaleFactor + this.MidPointX;
                     Y = (pixelY - (MandelBrot.Height / 2)) * this.ScaleFactor + this.MidPointY;
 
                     //This gets the mandelgetal from another method that calculates it
                     mandelGetal = calculateMandelgetal(X, Y);
                     Color MandelColor;
+                    //switch between color modes
                     switch (this.ColorMode)
                     {
                         case "default":
