@@ -1,12 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 
 namespace MandelBotSetPractica
@@ -21,10 +14,7 @@ namespace MandelBotSetPractica
         private Double ScaleFactor = 0.01;
         private int MaxLoop = 100;
         string ColorMode = "default";
-        Double MapXFrom = 0;
-        Double MapYFrom = 0;
-        Double MapXTo =0;
-        Double MapYTo = 0;
+
         public Form()
         {
             InitializeComponent();
@@ -71,10 +61,10 @@ namespace MandelBotSetPractica
                     this.MaxLoop = 90;
                     break;
                 case "fancy":
-                    this.ScaleFactor = 2.38418579101563E-09;
-                    this.MidPointX = 0.255861828327179;
-                    this.MidPointY = -0.000639102458953858;
-                    this.MaxLoop = 100;
+                    this.ScaleFactor = 2.98023223876954E-10;
+                    this.MidPointX = 0.255861408412457;
+                    this.MidPointY = -0.000638937056064606;
+                    this.MaxLoop = 1300;
                     break;
                 case "Kwadrant":
                     this.ScaleFactor = 6.103515625E-07;
@@ -191,14 +181,14 @@ namespace MandelBotSetPractica
             }
             return mandelgetal;
         }
+        //maps values between two doubles to in correlation between two other values.
         private double Map(double Value, double LowestValue, double HighestValue, double ToLowest, double ToHighest)
         {
             return ((Value / (HighestValue - LowestValue)) * (ToHighest - ToLowest)) + ToLowest;
         }
 
-        private void Submit_Click(object sender, EventArgs e)
+        private void SubmitClick(object sender, EventArgs e)
         {
-
             this.MidPointX = Convert.ToDouble(MidXText.Text);
             this.MidPointY = Convert.ToDouble(MidYText.Text);
             this.ScaleFactor = Double.Parse(ScaleText.Text);

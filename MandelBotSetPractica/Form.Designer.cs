@@ -97,7 +97,7 @@
             this.Submit.TabIndex = 8;
             this.Submit.Text = "Show Me!";
             this.Submit.UseVisualStyleBackColor = true;
-            this.Submit.Click += new System.EventHandler(this.Submit_Click);
+            this.Submit.Click += new System.EventHandler(this.SubmitClick);
             // 
             // MaxText
             // 
