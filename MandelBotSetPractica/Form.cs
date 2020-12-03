@@ -18,7 +18,7 @@ namespace MandelBotSetPractica
         //relatief tot the mandelbrotImg
         private Point MidPoint = new Point(0, 0);
 
-        private Double ScaleFactor = 0.01;
+        private Double ScaleFactor = 1;
         private int MaxLoop = 100;
         Double MapXFrom;
         Double MapYFrom;
@@ -39,6 +39,10 @@ namespace MandelBotSetPractica
             this.Width = 800;
             this.Height = 800;
             this.BackColor = Color.White;
+            MapXFrom = 0-MandelBrotSize.Width / 2;
+            MapYFrom = 0-MandelBrotSize.Height / 2;
+            MapXTo = 0+MandelBrotSize.Width / 2;
+            MapYTo = 0+MandelBrotSize.Height / 2;
             MandelBrotImg.Size = this.MandelBrotSize;
             MandelBrotImg.Paint += this.DrawMandelBrot;
             MandelBrotImg.MouseClick += new MouseEventHandler(this.zoom);
@@ -47,10 +51,9 @@ namespace MandelBotSetPractica
         }
         void zoom(object sender, MouseEventArgs e)
         {
-
+            this.ScaleFactor = this.ScaleFactor * 2;
             ScaleText.Text = this.ScaleFactor.ToString();
-            Console.WriteLine(e.X + "BXXX");
-            Console.WriteLine(e.Y + "YYYY");
+
             if (e.X-200 < 0)
             {
                 MidPoint.X = ((MidPoint.X - (e.X - 200) * -1));
@@ -97,10 +100,11 @@ namespace MandelBotSetPractica
             Console.WriteLine(this.MidPoint.X);
             Console.WriteLine(this.MidPoint.Y);
             Console.WriteLine(this.ScaleFactor + "SCALLELEE");
-            this.MapXFrom = (this.MidPoint.X - (MandelBrot.Width / 2));
-            this.MapYFrom = (this.MidPoint.Y - (MandelBrot.Height / 2));
-            this.MapXTo = (this.MidPoint.X + (MandelBrot.Width / 2 ));
-            this.MapYTo = (this.MidPoint.Y + (MandelBrot.Height / 2));
+            this.MapXFrom = (this.MidPoint.X - (this.MapXTo - this.MapXFrom));
+            this.MapYFrom = (this.MidPoint.Y - (this.MapYTo - this.MapYFrom));
+            this.MapXTo = (this.MidPoint.X + (MandelBrot.Width / this.ScaleFactor));
+            this.MapYTo = (this.MidPoint.Y + (MandelBrot.Height / this.ScaleFactor));
+
             Console.WriteLine(MapXFrom + "MAPXFROM");
             Console.WriteLine(MapYFrom + "MAPYFROM");
             Console.WriteLine(MapXTo + "MAPXto");
@@ -113,7 +117,8 @@ namespace MandelBotSetPractica
                     X = this.Map(pixelX, 0, MandelBrot.Width, this.MapXFrom, this.MapXTo);
                     Y = this.Map(pixelY, 0, MandelBrot.Height, this.MapYFrom, this.MapYTo);
                     //This gets the mandelgetal from another method that calculates it
-                    mandelGetal = calculateMandelgetal(X* this.ScaleFactor, Y * this.ScaleFactor);
+
+                    mandelGetal = calculateMandelgetal(X *(0.01 / this.ScaleFactor), Y * (0.01 / this.ScaleFactor));
 
                     double PreBrigthR = this.Map(mandelGetal /3, 0, MaxLoop /3, 0, 255);
                     double PreBrigthG = this.Map(mandelGetal, 0, MaxLoop, 0, 255);
