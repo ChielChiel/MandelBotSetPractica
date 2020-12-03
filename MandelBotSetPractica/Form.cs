@@ -20,7 +20,10 @@ namespace MandelBotSetPractica
 
         private Double ScaleFactor = 0.01;
         private int MaxLoop = 100;
-
+        Double MapXFrom;
+        Double MapYFrom;
+        Double MapXTo;
+        Double MapYTo;
         public Form()
         {
             InitializeComponent();
@@ -29,8 +32,8 @@ namespace MandelBotSetPractica
         private void Form1Load(object sender, EventArgs e)
         {
             //Here we set the standard values into the text boxes
-            MidXText.Text = MidPoint.X.ToString();
-            MidYText.Text = MidPoint.Y.ToString();
+            MidXText.Text = (MidPoint.X * this.ScaleFactor).ToString();
+            MidYText.Text = (MidPoint.Y *this.ScaleFactor).ToString();
             ScaleText.Text = ScaleFactor.ToString();
             MaxText.Text = MaxLoop.ToString();
             this.Width = 800;
@@ -38,55 +41,87 @@ namespace MandelBotSetPractica
             this.BackColor = Color.White;
             MandelBrotImg.Size = this.MandelBrotSize;
             MandelBrotImg.Paint += this.DrawMandelBrot;
-            MandelBrotImg.Click += this.zoom;
+            MandelBrotImg.MouseClick += new MouseEventHandler(this.zoom);
            
 
         }
-        void zoom(object sender, EventArgs e)
+        void zoom(object sender, MouseEventArgs e)
         {
-            this.ScaleFactor = this.ScaleFactor / 2;
+
             ScaleText.Text = this.ScaleFactor.ToString();
-            MidXText.Text = (MousePosition.X-230).ToString();
-            MidYText.Text = (MousePosition.Y-400).ToString();
-            this.MidPoint = new Point(MousePosition.X-230,  MousePosition.Y-400);
+            Console.WriteLine(e.X + "BXXX");
+            Console.WriteLine(e.Y + "YYYY");
+            if (e.X-200 < 0)
+            {
+                MidPoint.X = ((MidPoint.X - (e.X - 200) * -1));
+
+                if (e.Y-200 < 0)
+                {
+                    MidPoint.Y = ((MidPoint.Y - (e.Y - 200) * -1));
+                }
+                else
+                {
+                    MidPoint.Y = (MidPoint.Y + (e.Y - 200));
+                }
+            }
+            else
+            {
+                MidPoint.X = ((MidPoint.X + (e.X - 200)));
+                if (e.Y - 200 < 0)
+                {
+                    MidPoint.Y = ((MidPoint.Y - (e.Y - 200) * -1));
+                }
+                else
+                {
+                    MidPoint.Y = (MidPoint.Y + (e.Y - 200));
+                }
+            }
+
+            MidXText.Text = MidPoint.X.ToString();
+            MidYText.Text = MidPoint.Y.ToString();
+            this.MidPoint = new Point(MidPoint.X, MidPoint.Y);
+            Console.WriteLine(this.ScaleFactor + "END ZOOM");
+            
             MandelBrotImg.Refresh();
             
-            Console.WriteLine("ZOOM WRKS");
+            
         }
         void DrawMandelBrot(object sender, PaintEventArgs e)
         {
-
+            Console.WriteLine("TEKEN");
             Bitmap MandelBrot = new Bitmap(this.MandelBrotSize.Width, this.MandelBrotSize.Height);
             Color mandelColor;
             double X;
             double Y;
             int mandelGetal;
-            Double MapXFrom = (this.MidPoint.X - MandelBrot.Width) * this.ScaleFactor;
-            Double MapYFrom = (this.MidPoint.Y - MandelBrot.Height) * this.ScaleFactor;
-            Double MapXTo = (this.MidPoint.X + MandelBrot.Width) * this.ScaleFactor;
-            Double MapYTo = (this.MidPoint.Y + MandelBrot.Height) * this.ScaleFactor;
-
+            Console.WriteLine(this.MidPoint.X);
+            Console.WriteLine(this.MidPoint.Y);
+            Console.WriteLine(this.ScaleFactor + "SCALLELEE");
+            this.MapXFrom = (this.MidPoint.X - (MandelBrot.Width / 2));
+            this.MapYFrom = (this.MidPoint.Y - (MandelBrot.Height / 2));
+            this.MapXTo = (this.MidPoint.X + (MandelBrot.Width / 2 ));
+            this.MapYTo = (this.MidPoint.Y + (MandelBrot.Height / 2));
+            Console.WriteLine(MapXFrom + "MAPXFROM");
+            Console.WriteLine(MapYFrom + "MAPYFROM");
+            Console.WriteLine(MapXTo + "MAPXto");
+            Console.WriteLine(MapYTo + "MAPyto");
             for (int pixelX = 0; pixelX < MandelBrot.Width; pixelX++)
             {
                 for (int pixelY = 0; pixelY < MandelBrot.Height; pixelY++)
                 {
-
                     //Here we transform the pixel coordinates into X and Y's ranging from -2.5 to 2.5
-                    X = this.Map(pixelX, 0, MandelBrot.Width, MapXFrom, MapXTo);
-                    Y = this.Map(pixelY, 0, MandelBrot.Height, MapYFrom, MapYTo);
-
+                    X = this.Map(pixelX, 0, MandelBrot.Width, this.MapXFrom, this.MapXTo);
+                    Y = this.Map(pixelY, 0, MandelBrot.Height, this.MapYFrom, this.MapYTo);
                     //This gets the mandelgetal from another method that calculates it
-                    mandelGetal = calculateMandelgetal(X, Y);
+                    mandelGetal = calculateMandelgetal(X* this.ScaleFactor, Y * this.ScaleFactor);
 
-                    double PreBrigthR = this.Map(mandelGetal/3, 0, MaxLoop/3, 0, 255);
+                    double PreBrigthR = this.Map(mandelGetal /3, 0, MaxLoop /3, 0, 255);
                     double PreBrigthG = this.Map(mandelGetal, 0, MaxLoop, 0, 255);
-                    double PreBrigthB = this.Map(mandelGetal/4, 0, MaxLoop/4, 0, 255);
+                    double PreBrigthB = this.Map(mandelGetal /4, 0, MaxLoop /4, 0, 255);
                     Color MandelColor = Color.FromArgb((int)PreBrigthR, (int)PreBrigthB, (int)PreBrigthG);
                     MandelBrot.SetPixel(pixelX, pixelY, MandelColor);
                 }
             }
-
-
             e.Graphics.DrawImage(MandelBrot, 0, 0, MandelBrot.Width, MandelBrot.Height);
         }
 
@@ -106,11 +141,7 @@ namespace MandelBotSetPractica
                 X2 = X * X;
                 Y2 = Y * Y;
                 mandelgetal++;
-
             }
-            Console.WriteLine(X0);
-            Console.WriteLine(Y0);
-            Console.WriteLine(mandelgetal);
             return mandelgetal;
         }
         private double Map(double Value, double LowestValue, double HighestValue, double ToLowest, double ToHighest)
