@@ -13,16 +13,18 @@ namespace MandelBotSetPractica
 {
     public partial class Form : System.Windows.Forms.Form
     {
+
         private Size MandelBrotSize = new Size(400, 400);
         //relatief tot the mandelbrotImg
-        private Point MidPoint = new Point(0, 0);
-        string ColorMode = "default";
-        private Double ScaleFactor = 1;
+        private Double MidPointX =0;
+        private Double MidPointY =0;
+        private Double ScaleFactor = 0.01;
         private int MaxLoop = 100;
-        Double MapXFrom;
-        Double MapYFrom;
-        Double MapXTo;
-        Double MapYTo;
+        string ColorMode = "default";
+        Double MapXFrom = 0;
+        Double MapYFrom = 0;
+        Double MapXTo =0;
+        Double MapYTo = 0;
         public Form()
         {
             InitializeComponent();
@@ -31,8 +33,8 @@ namespace MandelBotSetPractica
         private void Form1Load(object sender, EventArgs e)
         {
             //Here we set the standard values into the text boxes
-            MidXText.Text = (MidPoint.X * this.ScaleFactor).ToString();
-            MidYText.Text = (MidPoint.Y * this.ScaleFactor).ToString();
+            MidXText.Text = (MidPointX * this.ScaleFactor).ToString();
+            MidYText.Text = (MidPointY *this.ScaleFactor).ToString();
             ScaleText.Text = ScaleFactor.ToString();
             MaxText.Text = MaxLoop.ToString();
             this.Width = 800;
@@ -41,85 +43,59 @@ namespace MandelBotSetPractica
             MandelBrotImg.Size = this.MandelBrotSize;
             MandelBrotImg.Paint += this.DrawMandelBrot;
             MandelBrotImg.MouseClick += new MouseEventHandler(this.zoom);
-            listBox1.Items.Add("default");
-            listBox1.Items.Add("yellow");
-            listBox1.Items.Add("fancy");
-            listBox1.Items.Add("zembla");
-            listBox1.SelectionMode = SelectionMode.One;
-            listBox1.SelectedIndexChanged += this.listBox1_SelectedIndexChanged;
-        }
+            ColorBox.Items.Add("default");
+            ColorBox.Items.Add("yellow");
+            ColorBox.Items.Add("fancy");
+            ColorBox.Items.Add("zembla");
+            ColorBox.SelectionMode = SelectionMode.One;
+            ColorBox.SelectedIndexChanged += this.ColorBoxSelectedIndexChanged;
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        }
+        private void ColorBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedItem = listBox1.GetItemText(listBox1.SelectedItem);
+            string selectedItem = ColorBox.GetItemText(ColorBox.SelectedItem);
             Console.WriteLine("lit" + selectedItem);
             //Points, maxloop en scalefactor moeten we dus nog kiezen behalve default dan.
-            switch (selectedItem) {
+            switch (selectedItem)
+            {
                 case "default":
                     this.ScaleFactor = 2;
-                    this.MidPoint = new Point(0, 0);
+                    this.MidPointX = 0;
+                    this.MidPointY = 0;
                     this.MaxLoop = 100;
                     break;
                 case "yellow":
                     this.ScaleFactor = 2;
-                    this.MidPoint = new Point(0, 0);
+                    this.MidPointX = 0;
+                    this.MidPointY = 0;
                     this.MaxLoop = 100;
                     break;
                 case "fancy":
                     this.ScaleFactor = 3;
-                    this.MidPoint = new Point(0, 0);
+                    this.MidPointX = 0;
+                    this.MidPointY = 0;
                     this.MaxLoop = 100;
                     break;
                 case "zembla":
                     this.ScaleFactor = 4;
-                    this.MidPoint = new Point(0, 0);
+                    this.MidPointX = 0;
+                    this.MidPointY = 0;
                     this.MaxLoop = 100;
                     break;
             }
             this.ColorMode = selectedItem;
 
-            MandelBrotImg.Update();
+            MandelBrotImg.Refresh();
         }
-
         void zoom(object sender, MouseEventArgs e)
         {
-            this.ScaleFactor = this.ScaleFactor /  2;
             ScaleText.Text = this.ScaleFactor.ToString();
-            Console.WriteLine(e.X + "BXXX");
-            Console.WriteLine(e.Y + "YYYY");
-            if (e.X - 200 < 0)
-            {
-                MidPoint.X = ((MidPoint.X - (e.X - 200) * -1));
-
-                if (e.Y - 200 < 0)
-                {
-                    MidPoint.Y = ((MidPoint.Y - (e.Y - 200) * -1));
-                }
-                else
-                {
-                    MidPoint.Y = (MidPoint.Y + (e.Y - 200));
-                }
-            }
-            else
-            {
-                MidPoint.X = ((MidPoint.X + (e.X - 200)));
-                if (e.Y - 200 < 0)
-                {
-                    MidPoint.Y = ((MidPoint.Y - (e.Y - 200) * -1));
-                }
-                else
-                {
-                    MidPoint.Y = (MidPoint.Y + (e.Y - 200));
-                }
-            }
-
-            MidXText.Text = MidPoint.X.ToString();
-            MidYText.Text = MidPoint.Y.ToString();
-            this.MidPoint = new Point(MidPoint.X, MidPoint.Y);
-            Console.WriteLine(this.ScaleFactor + "END ZOOM");
-
+            MidPointX = Convert.ToDouble(e.X - MandelBrotSize.Width / 2) * this.ScaleFactor + MidPointX;
+            MidPointY = Convert.ToDouble(e.Y - MandelBrotSize.Width / 2) * this.ScaleFactor + MidPointY;
+            MidXText.Text = MidPointX.ToString();
+            MidYText.Text = MidPointY.ToString();
+            this.ScaleFactor = this.ScaleFactor * 0.5;
             MandelBrotImg.Refresh();
-
 
         }
         void DrawMandelBrot(object sender, PaintEventArgs e)
@@ -130,69 +106,20 @@ namespace MandelBotSetPractica
             double X;
             double Y;
             int mandelGetal;
-            Console.WriteLine(this.MidPoint.X);
-            Console.WriteLine(this.MidPoint.Y);
-            Console.WriteLine(this.ScaleFactor + "SCALLELEE");
-            /*
-             this.MapXFrom = (this.MidPoint.X - ((MandelBrot.Width / 2) * 1 / this.ScaleFactor));
-             this.MapYFrom = (this.MidPoint.Y - ((MandelBrot.Height / 2) * 1/  this.ScaleFactor));
-             this.MapXTo = (this.MidPoint.X + ((MandelBrot.Width / 2) * 1 / this.ScaleFactor));
-             this.MapYTo = (this.MidPoint.Y + ((MandelBrot.Height / 2) * 1/ this.ScaleFactor));
-             */
-            /*
-            this.MapXFrom = this.MidPoint.X - this.ScaleFactor * MandelBrot.Width;
-            this.MapXTo = this.MidPoint.X + this.ScaleFactor * MandelBrot.Width;
 
-            this.MapYFrom = this.MidPoint.Y - this.ScaleFactor * MandelBrot.Height;
-            this.MapYTo = this.MidPoint.Y + this.ScaleFactor * MandelBrot.Height;
-            */
-           /*
-            this.MapXFrom = (this.ScaleFactor) * this.MidPoint.X -  MandelBrot.Width;
-            this.MapXTo = (this.ScaleFactor) *  this.MidPoint.X +  MandelBrot.Width;
-
-            this.MapYFrom = (this.ScaleFactor) *  this.MidPoint.Y - MandelBrot.Height;
-            this.MapYTo = (this.ScaleFactor) *  this.MidPoint.Y + MandelBrot.Height;
-           */
-
-            this.MapXFrom = (this.ScaleFactor) * -2.5;
-            this.MapXTo = (this.ScaleFactor) * 2.5;
-
-            this.MapYFrom = (this.ScaleFactor) * -2.5;
-            this.MapYTo = (this.ScaleFactor) * 2.5;
-
-            Console.WriteLine(MapXFrom + "MAPXFROM");
-            Console.WriteLine(MapYFrom + "MAPYFROM");
-            Console.WriteLine(MapXTo + "MAPXto");
-            Console.WriteLine(MapYTo + "MAPyto");
             for (int pixelX = 0; pixelX < MandelBrot.Width; pixelX++)
             {
                 for (int pixelY = 0; pixelY < MandelBrot.Height; pixelY++)
                 {
                     //Here we transform the pixel coordinates into X and Y's ranging from -2.5 to 2.5
-                    X = this.Map(pixelX, 0, MandelBrot.Width, this.MapXFrom, this.MapXTo);
-                    Y = this.Map(pixelY, 0, MandelBrot.Height, this.MapYFrom, this.MapYTo);
+                    X = (pixelX - (MandelBrot.Width / 2)) * this.ScaleFactor + this.MidPointX;
+                    Y = (pixelY - (MandelBrot.Height / 2)) * this.ScaleFactor + this.MidPointY;
+
                     //This gets the mandelgetal from another method that calculates it
                     mandelGetal = calculateMandelgetal(X, Y);
-
                     Color MandelColor;
-
-                    /*
-                    double PreBrigthR = this.Map(mandelGetal, 0, MaxLoop, 0, 255);
-                    double PreBrigthG = this.Map(mandelGetal, 0, MaxLoop, 0, 255);
-                    double PreBrigthB = this.Map(mandelGetal, 0, MaxLoop, 0, 255);
-                    MandelColor = Color.FromArgb((int)PreBrigthR, (int)PreBrigthB, (int)PreBrigthG);
-                    /*
-                    /*
-                    double map = this.Map(mandelGetal, 0, MaxLoop, 0.4, 1);
-                    MandelColor = HSL2RGB(map, 0.5, 0.5);
-                     if (mandelGetal == MaxLoop)
+                    switch (this.ColorMode)
                     {
-                        MandelColor = Color.White;
-                    }
-                     
-                     */
-
-                    switch (this.ColorMode) {
                         case "default":
                             int RGB = (int)this.Map(mandelGetal, 0, MaxLoop, 0, 255);
                             if (mandelGetal == MaxLoop)
@@ -237,10 +164,6 @@ namespace MandelBotSetPractica
                             MandelColor = Color.FromArgb((int)PreBrigthR, (int)PreBrigthB, (int)PreBrigthG);
                             break;
                     }
-
-
-
-
                     MandelBrot.SetPixel(pixelX, pixelY, MandelColor);
                 }
             }
@@ -273,23 +196,17 @@ namespace MandelBotSetPractica
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Lets redraw with new info!");
-            //            this.MidPoint = new Point(Int32.Parse(MidXText.Text), Int32.Parse(MidYText.Text));
-            this.MidPoint = new Point(Int32.Parse(MidXText.Text), Int32.Parse(MidYText.Text));
 
+            this.MidPointX = Convert.ToDouble(MidXText.Text);
+            this.MidPointY = Convert.ToDouble(MidYText.Text);
             this.ScaleFactor = Double.Parse(ScaleText.Text);
             this.MaxLoop = int.Parse(MaxText.Text);
-
+            Console.WriteLine(ColorBox.SelectedItem);
+   
             //Refresh de image, dus opnieuw tekenen maar dan met andere values.
             MandelBrotImg.Refresh();
         }
-
-        // Given H,S,L in range of 0-1
-
-        // Returns a Color (RGB struct) in range of 0-255
-
         public static Color HSL2RGB(double h, double sl, double l)
-
         {
 
             double v;
