@@ -55,7 +55,7 @@ namespace MandelBotSetPractica
         {
             string selectedItem = ColorBox.GetItemText(ColorBox.SelectedItem);
             Console.WriteLine("lit" + selectedItem);
-            //Points, maxloop en scalefactor moeten we dus nog kiezen behalve default dan.
+            //Points, maxloop en scalefactor per item in de itembox.
             switch (selectedItem)
             {
                 case "default":
@@ -66,9 +66,9 @@ namespace MandelBotSetPractica
                     break;
                 case "Abstract":
                     this.ScaleFactor = 2.38418579101563E-09;
-                    this.MidPointX = 0.255861828327179;
-                    this.MidPointY = -0.000639102458953858;
-                    this.MaxLoop = 100;
+                    this.MidPointX = -1.77067559719086;
+                    this.MidPointY = -0.0164487290382385;
+                    this.MaxLoop = 90;
                     break;
                 case "fancy":
                     this.ScaleFactor = 2.38418579101563E-09;
@@ -103,7 +103,6 @@ namespace MandelBotSetPractica
         }
         void DrawMandelBrot(object sender, PaintEventArgs e)
         {
-            Console.WriteLine("TEKEN");
             Bitmap MandelBrot = new Bitmap(this.MandelBrotSize.Width, this.MandelBrotSize.Height);
             Color mandelColor;
             double X;
@@ -173,6 +172,7 @@ namespace MandelBotSetPractica
             e.Graphics.DrawImage(MandelBrot, 0, 0, MandelBrot.Width, MandelBrot.Height);
         }
 
+        // We got the algorithm from wikipedia:https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set?wprov=sfti1
         private int calculateMandelgetal(double X0, double Y0)
         {
             double X2 = 0;
@@ -185,7 +185,6 @@ namespace MandelBotSetPractica
                 //Mandelbrot functie
                 Y = 2 * X * Y + Y0;
                 X = X2 - Y2 + X0;
-                //Berekent afstand van (0,0) since a*a + b*b = c*c
                 X2 = X * X;
                 Y2 = Y * Y;
                 mandelgetal++;
@@ -204,8 +203,6 @@ namespace MandelBotSetPractica
             this.MidPointY = Convert.ToDouble(MidYText.Text);
             this.ScaleFactor = Double.Parse(ScaleText.Text);
             this.MaxLoop = int.Parse(MaxText.Text);
-            Console.WriteLine(ColorBox.SelectedItem);
-   
             //Refresh de image, dus opnieuw tekenen maar dan met andere values.
             MandelBrotImg.Refresh();
         }
