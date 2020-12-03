@@ -209,6 +209,8 @@ namespace MandelBotSetPractica
             //Refresh de image, dus opnieuw tekenen maar dan met andere values.
             MandelBrotImg.Refresh();
         }
+        
+        //functie geleend van hier: https://geekymonkey.com/Programming/CSharp/RGB2HSL_HSL2RGB.htm
         public static Color HSL2RGB(double h, double sl, double l)
         {
 
