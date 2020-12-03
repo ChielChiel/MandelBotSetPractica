@@ -82,11 +82,6 @@
             // ColorBox
             // 
             this.ColorBox.FormattingEnabled = true;
-            this.ColorBox.Items.AddRange(new object[] {
-            "default",
-            "fancy",
-            "yellow",
-            "zembla"});
             this.ColorBox.Location = new System.Drawing.Point(436, 28);
             this.ColorBox.Margin = new System.Windows.Forms.Padding(2);
             this.ColorBox.Name = "ColorBox";
