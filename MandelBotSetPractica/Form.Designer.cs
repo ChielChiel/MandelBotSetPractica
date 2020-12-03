@@ -32,6 +32,7 @@
             this.MandelBrotImg = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.ColorBox = new System.Windows.Forms.ListBox();
             this.Submit = new System.Windows.Forms.Button();
             this.MaxText = new System.Windows.Forms.TextBox();
@@ -63,6 +64,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.ColorBox);
             this.panel1.Controls.Add(this.Submit);
             this.panel1.Controls.Add(this.MaxText);
@@ -78,6 +80,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(519, 117);
             this.panel1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(399, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Please click on the box";
+            
             // 
             // ColorBox
             // 
@@ -204,6 +217,7 @@
         private System.Windows.Forms.TextBox MidXText;
         private System.Windows.Forms.ListBox ColorBox;
         private System.Windows.Forms.TextBox MaxText;
+        private System.Windows.Forms.Label label1;
     }
 }
 
